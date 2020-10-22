@@ -15,6 +15,7 @@ import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { ToastrModule } from 'ngx-toastr';
 import { DataTablesModule } from 'angular-datatables';
+import { SharedModule } from './_modules/shared.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,10 +34,8 @@ import { DataTablesModule } from 'angular-datatables';
     BrowserAnimationsModule,
     FormsModule,
     DataTablesModule,
-    BsDropdownModule.forRoot(),
-    ToastrModule.forRoot({
-      positionClass: "toast-top-right"
-    }),
+    SharedModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
