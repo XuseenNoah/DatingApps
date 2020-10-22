@@ -1,5 +1,15 @@
 <app-nav></app-nav>
-<app-home></app-home>
+<ng-container *ngIf="accountService.currentUser$ | async">
+
+
+
+  <div class="container">
+
+    <router-outlet></router-outlet>
+  </div>
+</ng-container>
+
+
 <!-- <div class="container">
   <p *ngFor="let user of users">
     {{user.id}} {{user.userName}}

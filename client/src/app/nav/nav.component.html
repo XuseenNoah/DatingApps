@@ -1,27 +1,33 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="accountService.currentUser$ | async">
     <div class="container">
-        <a class="navbar-brand" href="#">Dating App</a>
+        <a class="navbar-brand" routerLink="/" routerLinkActive="active">Dating App</a>
+        <ng-container *ngIf="accountService.currentUser$ | async">
+
+            <div class="collapse navbar-collapse" id="navbarColor02">
+                <ul class="navbar-nav mr-auto">
 
 
-        <div class="collapse navbar-collapse" id="navbarColor02" *ngIf="accountService.currentUser$ | async">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Maches</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Lists</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Messages</a>
-                </li>
 
 
-            </ul>
-        </div>
-        <div class="dropdown" *ngIf="accountService.currentUser$ | async" dropdown>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/members" routerLinkActive="active">Maches</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/lists" routerLinkActive="active">Lists</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/messages" routerLinkActive="active">Messages</a>
+                    </li>
+
+
+
+                </ul>
+            </div>
+        </ng-container>
+        <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
 
             <a class="dropdown-toggle text-light" dropdownToggle>
-                Welcome user
+                Welcome {{user.username | titlecase}}
             </a>
             <div class="dropdown-menu mt-3" *dropdownMenu>
                 <a class="dropdown-item">Edit Profile</a>

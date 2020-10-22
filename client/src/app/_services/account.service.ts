@@ -25,6 +25,10 @@ export class AccountService {
     );
   }
 
+  getUsers() {
+    return this.http.get(this.baseUrl + 'users');
+  }
+
   register(user: any) {
     return this.http.post(this.baseUrl + "account/register", user).pipe(
       map((resonpse: User) => {
