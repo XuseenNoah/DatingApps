@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,6 +16,11 @@ import { MessagesComponent } from './messages/messages.component';
 import { ToastrModule } from 'ngx-toastr';
 import { DataTablesModule } from 'angular-datatables';
 import { SharedModule } from './_modules/shared.module';
+import { ErrorInterceptor } from './_interceptor/error.interceptor';
+
+import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
+import { SeverErrorComponent } from './errors/sever-error/sever-error.component';
+import { NotFoundComponent } from './errors/not-found/not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +31,9 @@ import { SharedModule } from './_modules/shared.module';
     MemberDetailComponent,
     ListsComponent,
     MessagesComponent,
+    TestErrorsComponent,
+    SeverErrorComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +45,9 @@ import { SharedModule } from './_modules/shared.module';
     SharedModule
 
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
